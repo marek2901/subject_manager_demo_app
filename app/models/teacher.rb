@@ -5,5 +5,7 @@ class Teacher < ActiveRecord::Base
 
   validates :title, inclusion: { in: ACADEMIC_TITLES,
     message: "%{value} is not a valid size" }
-  
+
+  has_many :subjects
+
 end

@@ -16,4 +16,15 @@ RSpec.describe Teacher, type: :model do
   it 'is saved with valid params' do
     expect { create(:teacher) }.to change(Teacher, :count).by(1)
   end
+
+  it 'is has many subjects' do
+    teacher = create(:teacher_with_subjects)
+    expect(teacher.subjects.count).to eq (3)
+  end
+
+  it 'subject is type of Subject' do
+    teacher = create(:teacher_with_subjects)
+    expect(teacher.subjects.first).to be_a(Subject)
+  end
+
 end

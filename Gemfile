@@ -53,4 +53,5 @@ group :development, :test do
   gem 'capybara'
   gem 'simplecov'
   gem "codeclimate-test-reporter"
+  gem 'database_cleaner'
 end
