@@ -36,123 +36,130 @@ RSpec.describe SubjectsController, type: :controller do
   # SubjectsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all subjects as @subjects" do
-      subject = Subject.create! valid_attributes
-      get :index, {}, session: valid_session
-      expect(assigns(:subjects)).to eq([subject])
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested subject as @subject" do
-      subject = Subject.create! valid_attributes
-      get :show, {id: subject.to_param}, session: valid_session
-      expect(assigns(:subject)).to eq(subject)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new subject as @subject" do
-      get :new, {}, session: valid_session
-      expect(assigns(:subject)).to be_a_new(Subject)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested subject as @subject" do
-      subject = Subject.create! valid_attributes
-      get :edit, {id: subject.to_param}, session: valid_session
-      expect(assigns(:subject)).to eq(subject)
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Subject" do
-        expect {
-          post :create, {subject: valid_attributes}, session: valid_session
-        }.to change(Subject, :count).by(1)
-      end
-
-      it "assigns a newly created subject as @subject" do
-        post :create, {subject: valid_attributes}, session: valid_session
-        expect(assigns(:subject)).to be_a(Subject)
-        expect(assigns(:subject)).to be_persisted
-      end
-
-      it "redirects to the created subject" do
-        post :create, {subject: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Subject.last)
-      end
+  context 'signed_in' do
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      sign_in(create(:user), scope: :user)
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved subject as @subject" do
-        post :create, {subject: invalid_attributes}, session: valid_session
-        expect(assigns(:subject)).to be_a_new(Subject)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {subject: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        {title: "new title"}
-      }
-
-      it "updates the requested subject" do
+    describe "GET #index" do
+      it "assigns all subjects as @subjects" do
         subject = Subject.create! valid_attributes
-        put :update, {id: subject.to_param, subject: new_attributes}, session: valid_session
-        subject.reload
-        expect(subject.title).to eq "new title"
+        get :index, {}, session: valid_session
+        expect(assigns(:subjects)).to eq([subject])
       end
+    end
 
+    describe "GET #show" do
       it "assigns the requested subject as @subject" do
         subject = Subject.create! valid_attributes
-        put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
+        get :show, {id: subject.to_param}, session: valid_session
         expect(assigns(:subject)).to eq(subject)
-      end
-
-      it "redirects to the subject" do
-        subject = Subject.create! valid_attributes
-        put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(subject)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the subject as @subject" do
-        subject = Subject.create! valid_attributes
-        put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
-        expect(assigns(:subject)).to eq(subject)
-      end
-
-      it "re-renders the 'edit' template" do
-        subject = Subject.create! valid_attributes
-        put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+    describe "GET #new" do
+      it "assigns a new subject as @subject" do
+        get :new, {}, session: valid_session
+        expect(assigns(:subject)).to be_a_new(Subject)
       end
     end
-  end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested subject" do
-      subject = Subject.create! valid_attributes
-      expect {
+    describe "GET #edit" do
+      it "assigns the requested subject as @subject" do
+        subject = Subject.create! valid_attributes
+        get :edit, {id: subject.to_param}, session: valid_session
+        expect(assigns(:subject)).to eq(subject)
+      end
+    end
+
+    describe "POST #create" do
+      context "with valid params" do
+        it "creates a new Subject" do
+          expect {
+            post :create, {subject: valid_attributes}, session: valid_session
+          }.to change(Subject, :count).by(1)
+        end
+
+        it "assigns a newly created subject as @subject" do
+          post :create, {subject: valid_attributes}, session: valid_session
+          expect(assigns(:subject)).to be_a(Subject)
+          expect(assigns(:subject)).to be_persisted
+        end
+
+        it "redirects to the created subject" do
+          post :create, {subject: valid_attributes}, session: valid_session
+          expect(response).to redirect_to(Subject.last)
+        end
+      end
+
+      context "with invalid params" do
+        it "assigns a newly created but unsaved subject as @subject" do
+          post :create, {subject: invalid_attributes}, session: valid_session
+          expect(assigns(:subject)).to be_a_new(Subject)
+        end
+
+        it "re-renders the 'new' template" do
+          post :create, {subject: invalid_attributes}, session: valid_session
+          expect(response).to render_template("new")
+        end
+      end
+    end
+
+    describe "PUT #update" do
+      context "with valid params" do
+        let(:new_attributes) {
+          {title: "new title"}
+        }
+
+        it "updates the requested subject" do
+          subject = Subject.create! valid_attributes
+          put :update, {id: subject.to_param, subject: new_attributes}, session: valid_session
+          subject.reload
+          expect(subject.title).to eq "new title"
+        end
+
+        it "assigns the requested subject as @subject" do
+          subject = Subject.create! valid_attributes
+          put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
+          expect(assigns(:subject)).to eq(subject)
+        end
+
+        it "redirects to the subject" do
+          subject = Subject.create! valid_attributes
+          put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
+          expect(response).to redirect_to(subject)
+        end
+      end
+
+      context "with invalid params" do
+        it "assigns the subject as @subject" do
+          subject = Subject.create! valid_attributes
+          put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
+          expect(assigns(:subject)).to eq(subject)
+        end
+
+        it "re-renders the 'edit' template" do
+          subject = Subject.create! valid_attributes
+          put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
+          expect(response).to render_template("edit")
+        end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "destroys the requested subject" do
+        subject = Subject.create! valid_attributes
+        expect {
+          delete :destroy, {id: subject.to_param}, session: valid_session
+        }.to change(Subject, :count).by(-1)
+      end
+
+      it "redirects to the subjects list" do
+        subject = Subject.create! valid_attributes
         delete :destroy, {id: subject.to_param}, session: valid_session
-      }.to change(Subject, :count).by(-1)
-    end
-
-    it "redirects to the subjects list" do
-      subject = Subject.create! valid_attributes
-      delete :destroy, {id: subject.to_param}, session: valid_session
-      expect(response).to redirect_to(subjects_url)
+        expect(response).to redirect_to(subjects_url)
+      end
     end
   end
 
