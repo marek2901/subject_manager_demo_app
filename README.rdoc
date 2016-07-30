@@ -1,4 +1,4 @@
-{<img src="https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/marek2901/subject_manager_demo_app]
+{<img src="https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/gpa.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/coverage.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app/coverage] 
 
 == SubjectManagerDemoApp
 
