@@ -161,6 +161,15 @@ RSpec.describe SubjectsController, type: :controller do
         expect(response).to redirect_to(subjects_url)
       end
     end
+
+    describe 'GET #participants' do
+      it 'show teacher subject list list' do
+        subject = create(:subject_with_students)
+        get :participants, {id: subject.id}
+        expect(assigns(:subject)).to eq(subject)
+      end
+    end
+
   end
 
 end

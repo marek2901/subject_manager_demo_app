@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :subjects
+  get '/subjects/:id/participants' => 'subjects#participants', as: :subjects_participants
 
   resources :teachers
   get '/teachers/:id/subjects' => 'teachers#subjects', as: :teacher_subjects

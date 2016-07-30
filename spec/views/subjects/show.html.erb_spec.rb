@@ -11,4 +11,9 @@ RSpec.describe "subjects/show", type: :view do
     render
     expect(rendered).to match(/Title/)
   end
+
+  it "has link to participants" do
+    render
+    expect(rendered).to have_link("Participants", href: subjects_participants_path(id: @subject.id))
+  end
 end
