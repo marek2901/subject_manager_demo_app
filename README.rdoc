@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master)](https://travis-ci.org/marek2901/subject_manager_demo_app)
+{<img src="https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/marek2901/subject_manager_demo_app]
 
-== SubjectManagerDemoApp 
+== SubjectManagerDemoApp
 
 Stack:
   - Rails 4.2.1
