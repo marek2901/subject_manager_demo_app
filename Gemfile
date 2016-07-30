@@ -52,4 +52,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
   gem 'simplecov'
+  gem "codeclimate-test-reporter"
 end
