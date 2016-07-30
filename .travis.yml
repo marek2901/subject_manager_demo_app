@@ -1,0 +1,6 @@
+rvm:
+  - 2.2.3
+before_script:
+  - psql -c 'create database subject_manager_demo_app_test;' -U postgres
+addons:
+  postgresql: '9.3'
