@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :subjects
+
   resources :teachers
+  get '/teachers/:id/subjects' => 'teachers#subjects', as: :teacher_subjects
+
   resources :students
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

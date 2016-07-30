@@ -15,5 +15,6 @@
   <%= @teacher.title %>
 </p>
 
+<%= link_to 'Subjects', teacher_subjects_path(id: @teacher.id) %>
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
 <%= link_to 'Back', teachers_path %>
