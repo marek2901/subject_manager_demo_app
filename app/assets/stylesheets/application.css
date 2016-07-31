@@ -14,3 +14,14 @@
  *= require_self
  *= require devise_bootstrap_views
  */
+
+ /* styles for validation helpers */
+.help-block {
+  display: none !important;
+}
+
+.field_with_errors {
+  padding: 0px;
+  background-color: red;
+  display: block;
+}
