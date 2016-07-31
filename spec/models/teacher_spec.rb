@@ -27,4 +27,10 @@ RSpec.describe Teacher, type: :model do
     expect(teacher.subjects.first).to be_a(Subject)
   end
 
+  describe '#full_name' do
+    it 'shows users name and surname' do
+      expect(create(:teacher).full_name).to eq "Example Teacher"
+    end
+  end
+
 end

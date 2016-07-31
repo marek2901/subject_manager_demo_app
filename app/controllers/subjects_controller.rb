@@ -15,7 +15,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
-    @subject = Subject.new
+    @subject = Subject.new(teacher_id: params[:teacher_id])
   end
 
   # GET /subjects/1/edit
@@ -73,6 +73,6 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:title)
+      params.require(:subject).permit(:title, :teacher_id)
     end
 end

@@ -9,8 +9,8 @@ RSpec.describe Subject, type: :model do
     expect { create(:subject) }.to change(Subject, :count).by(1)
   end
 
-  it 'has one teacher' do
-    subject = create(:subject_with_teacher)
+  it 'has_one teacher' do
+    subject = create(:subject)
     expect(subject.teacher).to be_a(Teacher)
   end
 
@@ -20,5 +20,9 @@ RSpec.describe Subject, type: :model do
 
   it 'subject is of class Subject' do
     expect(create(:subject_with_students).students.first).to be_a(Student)
+  end
+
+  it 'is not created without teacher' do
+    expect { create(:subject, teacher: nil) }.to raise_error ActiveRecord::RecordInvalid
   end
 end

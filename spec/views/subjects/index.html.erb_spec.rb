@@ -4,10 +4,12 @@ RSpec.describe "subjects/index", type: :view do
   before(:each) do
     assign(:subjects, [
       Subject.create!(
-        :title => "Title"
+        :title => "Title",
+        :teacher => create(:teacher)
       ),
       Subject.create!(
-        :title => "Title"
+        :title => "Title",
+        :teacher => create(:teacher)
       )
     ])
   end

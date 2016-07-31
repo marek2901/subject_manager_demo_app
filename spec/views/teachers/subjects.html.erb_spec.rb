@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "teachers/subjects", type: :view do
   before(:each) do
-    assign(:teacher, create(:teacher_with_subjects))
+    @teacher = create(:teacher_with_subjects)
+    assign(:teacher, @teacher)
   end
 
   it "renders a list of teacher subjects" do
@@ -13,6 +14,6 @@ RSpec.describe "teachers/subjects", type: :view do
   it "has link to create new subject" do
     render
 
-    expect(rendered).to have_link("New Subject", href: new_subject_path)
+    expect(rendered).to have_link("New Subject", href: new_subject_path(teacher_id: @teacher.id))
   end
 end

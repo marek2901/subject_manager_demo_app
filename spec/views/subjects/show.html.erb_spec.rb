@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "subjects/show", type: :view do
   before(:each) do
     @subject = assign(:subject, Subject.create!(
-      :title => "Title"
+      :title => "Title",
+      :teacher => create(:teacher)
     ))
   end
 
@@ -15,5 +16,11 @@ RSpec.describe "subjects/show", type: :view do
   it "has link to participants" do
     render
     expect(rendered).to have_link("Participants", href: subjects_participants_path(id: @subject.id))
+  end
+
+  it "shows teacher name" do
+    render
+
+    expect(rendered).to match(/Example Teacher/)
   end
 end

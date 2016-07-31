@@ -24,7 +24,7 @@ RSpec.describe SubjectsController, type: :controller do
   # Subject. As you add validations to Subject, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {title: "Subject Title"}
+    {title: "Subject Title", teacher_id: create(:teacher).id }
   }
 
   let(:invalid_attributes) {
@@ -62,6 +62,12 @@ RSpec.describe SubjectsController, type: :controller do
       it "assigns a new subject as @subject" do
         get :new, {}, session: valid_session
         expect(assigns(:subject)).to be_a_new(Subject)
+      end
+
+      it 'assign teacher when provided with hash' do
+        teacher = create(:teacher)
+        get :new, {teacher_id: teacher.id }, session: valid_session
+        expect(assigns(:subject).teacher).to eq(teacher)
       end
     end
 
