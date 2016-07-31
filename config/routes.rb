@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/subjects/:id/participants' => 'subjects#participants', as: :subjects_participants
   get '/subjects/:id/participants/new' => 'subjects#new_participant', as: :new_subjects_participant
   post '/subjects/:id/participants/create' => 'subjects#assign_participant', as: :assign_participant_to_subject
+  delete '/subjects/:id/participants/delete' => 'subjects#unassing_participant', as: :unassing_participant_from_subject
 
   resources :teachers
   get '/teachers/:id/subjects' => 'teachers#subjects', as: :teacher_subjects

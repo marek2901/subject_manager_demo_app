@@ -211,6 +211,23 @@ RSpec.describe SubjectsController, type: :controller do
       end
     end
 
+    describe "DELETE #unassing_user" do
+      it "removes participant assignment" do
+        subject = create(:subject_with_students)
+        expect {
+          delete :unassing_participant, {id: subject.to_param,
+            participant_id: subject.students.first.id}, session: valid_session
+        }.to change(subject.students, :count).by(-1)
+      end
+
+      it "redirects to the subject participants list" do
+        subject = create(:subject_with_students)
+        delete :unassing_participant, {id: subject.to_param,
+          participant_id: subject.students.first.id}, session: valid_session
+        expect(response).to redirect_to(subjects_participants_path(id: subject.id))
+      end
+    end
+
   end
 
 end

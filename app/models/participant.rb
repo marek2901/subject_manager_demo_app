@@ -11,4 +11,10 @@ class Participant
       false
     end
   end
+
+  class << self
+    def unassign(subject_id, participant_id)
+      Subject.find(subject_id).students.delete(Student.find(participant_id)) rescue false
+    end
+  end
 end

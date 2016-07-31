@@ -39,5 +39,12 @@ RSpec.describe Participant, type: :model do
       expect(participant.save).to eq false
     end
 
+    it 'removes participant from subject' do
+      subject = create(:subject_with_students)
+      expect {
+        Participant.unassign subject.id, subject.students.first.id
+      }.to change(subject.students, :count).by(-1)
+    end
+
   end
 end

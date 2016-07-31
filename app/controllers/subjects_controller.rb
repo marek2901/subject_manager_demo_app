@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :participants, :new_participant]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :participants, :new_participant, :unassing_participant]
 
   # GET /subjects
   # GET /subjects.json
@@ -41,6 +41,14 @@ class SubjectsController < ApplicationController
       else
         format.html { render :new_participant }
       end
+    end
+  end
+
+  def unassing_participant
+    Participant.unassign(@subject.id, params[:participant_id])
+
+    respond_to do |format|
+      format.html { redirect_to subjects_participants_path(id: @subject.id), notice: 'Participant was successfully unassigned.' }
     end
   end
 
