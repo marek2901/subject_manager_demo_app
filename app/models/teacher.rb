@@ -4,7 +4,7 @@ class Teacher < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   validates :title, inclusion: { in: ACADEMIC_TITLES,
-    message: "%{value} is not a valid size" }
+    message: "%{value} is not a valid size use one of #{ACADEMIC_TITLES}" }
 
   has_many :subjects
 
