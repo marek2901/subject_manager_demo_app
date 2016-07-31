@@ -21,4 +21,10 @@ RSpec.describe Student, type: :model do
   it 'subject is of class Subject' do
     expect(create(:student_with_subjects).subjects.first).to be_a(Subject)
   end
+
+  describe '#full_name' do
+    it 'shows students name and surname' do
+      expect(create(:student).full_name).to eq "Example Student"
+    end
+  end
 end

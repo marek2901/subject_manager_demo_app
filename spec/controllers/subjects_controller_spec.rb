@@ -176,6 +176,41 @@ RSpec.describe SubjectsController, type: :controller do
       end
     end
 
+    describe 'GET #new_participant' do
+      it 'render new participant theme with assigned subject' do
+        subject = create(:subject)
+        get :new_participant, {id: subject.id}
+        expect(assigns(:subject)).to eq(subject)
+      end
+    end
+
+    describe 'POST #assign_participant' do
+      context "with valid params" do
+        it "assign participant" do
+          subject = create(:subject)
+          participant = create(:student)
+          expect {
+            post :assign_participant, {id: subject.id, participant: {participant_id: participant.id} }, session: valid_session
+          }.to change(subject.students, :count).by(1)
+        end
+
+        it "redirects to subject participants" do
+          subject = create(:subject)
+          participant = create(:student)
+          post :assign_participant, {id: subject.id, participant: {participant_id: participant.id} }, session: valid_session
+          expect(response).to redirect_to(subjects_participants_path(id: subject.id))
+        end
+      end
+
+      context "with invalid params" do
+        it "assigns a newly created but unsaved subject as @subject" do
+          subject = create(:subject)
+          post :assign_participant, {id: subject.id, participant: {participant_id: nil}}, session: valid_session
+          expect(assigns(:participant)).to be_a(Participant)
+        end
+      end
+    end
+
   end
 
 end

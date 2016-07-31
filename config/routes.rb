@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :subjects
   get '/subjects/:id/participants' => 'subjects#participants', as: :subjects_participants
+  get '/subjects/:id/participants/new' => 'subjects#new_participant', as: :new_subjects_participant
+  post '/subjects/:id/participants/create' => 'subjects#assign_participant', as: :assign_participant_to_subject
 
   resources :teachers
   get '/teachers/:id/subjects' => 'teachers#subjects', as: :teacher_subjects

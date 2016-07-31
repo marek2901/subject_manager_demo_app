@@ -18,6 +18,12 @@ RSpec.describe "subjects/show", type: :view do
     expect(rendered).to have_link("Participants", href: subjects_participants_path(id: @subject.id))
   end
 
+  it "has link to assign new participant" do
+    render
+
+    expect(rendered).to have_link("Assign new participant", href: new_subjects_participant_path(id: @subject.id) )
+  end
+
   it "shows teacher name" do
     render
 

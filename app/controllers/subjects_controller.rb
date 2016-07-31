@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :participants]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :participants, :new_participant]
 
   # GET /subjects
   # GET /subjects.json
@@ -23,6 +23,25 @@ class SubjectsController < ApplicationController
   end
 
   def participants
+  end
+
+  def new_participant
+    @participant = Participant.new
+  end
+
+  def assign_participant
+    @participant = Participant.new(participant_params)
+    @participant.subject_id = params[:id]
+    @subject = Subject.find(params[:id])
+
+    respond_to do |format|
+      if @participant.save
+        format.html { redirect_to subjects_participants_path(id: @participant.subject_id),
+           notice: 'Participant was successfully assigned.' }
+      else
+        format.html { render :new_participant }
+      end
+    end
   end
 
   # POST /subjects
@@ -74,5 +93,9 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       params.require(:subject).permit(:title, :teacher_id)
+    end
+
+    def participant_params
+      params.require(:participant).permit(:subject_id, :participant_id)
     end
 end
