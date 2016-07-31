@@ -1,4 +1,4 @@
-{<img src="https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/gpa.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/coverage.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app/coverage] 
+{<img src="https://travis-ci.org/marek2901/subject_manager_demo_app.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/gpa.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app] {<img src="https://codeclimate.com/github/marek2901/subject_manager_demo_app/badges/coverage.svg" />}[https://codeclimate.com/github/marek2901/subject_manager_demo_app/coverage]
 
 == SubjectManagerDemoApp
 
@@ -8,3 +8,9 @@ Stack:
   - Postgres 9.3
 
 Simple web app for Teachers Students and Subjects management.
+
+Visit application at url: https://subject-manager-demo.herokuapp.com
+
+You can login using:
+
+email: marek2901@gmail.com and password: knownpassword or create your own account
