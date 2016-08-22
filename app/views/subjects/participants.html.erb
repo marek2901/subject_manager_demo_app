@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @subject.students.each do |student| %>
+    <% @subject.participants.each do |student| %>
     <tr>
       <td><%= link_to student.id, student_path(student) %></td>
       <td><%= student.first_name %></td>
