@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'bundle install'
+                sh 'bundle'
             }
         }
         stage('test') {
