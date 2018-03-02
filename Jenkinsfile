@@ -3,13 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'gem install bundler'
-                sh 'bundle'
-            }
-        }
-        stage('test') {
-            steps {
-                sh 'rspec spec/'
+                sh 'ruby --version'
             }
         }
     }
