@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-
+# Dotenv to manage env variables
+gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use postgresql as the database for Active Record  
+# Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -23,39 +24,26 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Devise Authentication
 gem 'devise'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
-gem 'sprockets', '3.6.3'
 gem 'devise-bootstrap-views'
+gem 'less-rails'
+gem 'sprockets', '3.6.3'
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-byebug'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
-  gem "factory_girl_rails", "~> 4.0"
-  gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
-  gem 'simplecov'
-  gem "codeclimate-test-reporter"
+  gem 'codeclimate-test-reporter'
   gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'simplecov'
 end
