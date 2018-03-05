@@ -11,15 +11,15 @@ services:
     build: .
     volumes:
       - .:/myapp
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
       - "3000:3000"
     depends_on:
       - db
     environment:
-      - RAILS_ENV=production
+      - RAILS_ENV=test
       - SECRET_KEY_BASE=abcd
       - RAILS_LOG_TO_STDOUT=true
       - DATABASE_URL=postgres://docker:docker@db/subject_manager_demo_app_develop
+    entrypoint: bash -c "bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rspec"
 volumes:
   pg-data:
