@@ -5,7 +5,7 @@ gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,6 +37,7 @@ group :development do
   gem 'pry-rails'
   gem 'spring'
   gem 'web-console', '~> 2.0'
+  gem 'rubocop'
 end
 
 group :development, :test do

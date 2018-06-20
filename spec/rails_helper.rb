@@ -8,8 +8,6 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'simplecov'
 SimpleCov.start
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 
 require 'database_cleaner'
 # Add additional requires below this line. Rails is not loaded until this point!
