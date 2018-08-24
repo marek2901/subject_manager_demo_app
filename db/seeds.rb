@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: "marek2901@gmail.com", password: "knownpassword")
+User.create(email: 'marek2901@gmail.com', password: 'knownpassword')
 
 teachers = []
 3.times do |n|
-  teachers << Teacher.create(first_name: "Teacher#{n}", last_name: "Example", title: "Dr.")
+  teachers << Teacher.create(first_name: "Teacher#{n}", last_name: 'Example', title: 'Dr.')
 end
 
 subjects = []
@@ -20,7 +20,7 @@ end
 
 students = []
 25.times do |n|
-  students << Student.create(first_name: "Student#{n}", last_name: "Exampleee")
+  students << Student.create(first_name: "Student#{n}", last_name: 'Exampleee')
 end
 
 4.times do

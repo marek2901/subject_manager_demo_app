@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :participants, :new_participant, :unassing_participant]
+  before_action :set_subject, only: %i[show edit update destroy participants new_participant unassing_participant]
 
   # GET /subjects
   # GET /subjects.json
@@ -10,8 +10,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1
   # GET /subjects/1.json
-  def show
-  end
+  def show; end
 
   # GET /subjects/new
   def new
@@ -19,11 +18,9 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/1/edit
-  def edit
-  end
+  def edit; end
 
-  def participants
-  end
+  def participants; end
 
   def new_participant
     @participant = Participant.new
@@ -36,8 +33,10 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to subjects_participants_path(id: @participant.subject_id),
-           notice: 'Participant was successfully assigned.' }
+        format.html do
+          redirect_to subjects_participants_path(id: @participant.subject_id),
+                      notice: 'Participant was successfully assigned.'
+        end
       else
         format.html { render :new_participant }
       end
@@ -93,17 +92,18 @@ class SubjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subject
-      @subject = Subject.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subject_params
-      params.require(:subject).permit(:title, :teacher_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subject
+    @subject = Subject.find(params[:id])
+  end
 
-    def participant_params
-      params.require(:participant).permit(:subject_id, :participant_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def subject_params
+    params.require(:subject).permit(:title, :teacher_id)
+  end
+
+  def participant_params
+    params.require(:participant).permit(:subject_id, :participant_id)
+  end
 end

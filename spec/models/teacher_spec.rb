@@ -10,7 +10,7 @@ RSpec.describe Teacher, type: :model do
   end
 
   it 'is not saved when provided wrong title' do
-    expect { create(:teacher, title: "wrong") }.to raise_error ActiveRecord::RecordInvalid
+    expect { create(:teacher, title: 'wrong') }.to raise_error ActiveRecord::RecordInvalid
   end
 
   it 'is saved with valid params' do
@@ -19,7 +19,7 @@ RSpec.describe Teacher, type: :model do
 
   it 'is has many subjects' do
     teacher = create(:teacher_with_subjects)
-    expect(teacher.subjects.count).to eq (3)
+    expect(teacher.subjects.count).to eq 3
   end
 
   it 'subject is type of Subject' do
@@ -29,8 +29,7 @@ RSpec.describe Teacher, type: :model do
 
   describe '#full_name' do
     it 'shows users name and surname' do
-      expect(create(:teacher).full_name).to eq "Example Teacher"
+      expect(create(:teacher).full_name).to eq 'Example Teacher'
     end
   end
-
 end

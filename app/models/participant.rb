@@ -5,7 +5,11 @@ class Participant
 
   def save
     if valid?
-      Subject.find(subject_id).students << Student.find(participant_id) rescue return false
+      begin
+        Subject.find(subject_id).students << Student.find(participant_id)
+      rescue StandardError
+        return false
+      end
       true
     else
       false
@@ -14,7 +18,9 @@ class Participant
 
   class << self
     def unassign(subject_id, participant_id)
-      Subject.find(subject_id).students.delete(Student.find(participant_id)) rescue false
+      Subject.find(subject_id).students.delete(Student.find(participant_id))
+    rescue StandardError
+      false
     end
   end
 end

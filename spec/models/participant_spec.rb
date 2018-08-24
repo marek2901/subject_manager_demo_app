@@ -15,7 +15,7 @@ RSpec.describe Participant, type: :model do
       expect(participant.save).to eq true
     end
 
-    describe "assign" do
+    describe 'assign' do
       before(:each) do
         participant = Participant.new
         participant.subject_id = @subject.id
@@ -41,10 +41,9 @@ RSpec.describe Participant, type: :model do
 
     it 'removes participant from subject' do
       subject = create(:subject_with_students)
-      expect {
+      expect do
         Participant.unassign subject.id, subject.students.first.id
-      }.to change(subject.students, :count).by(-1)
+      end.to change(subject.students, :count).by(-1)
     end
-
   end
 end

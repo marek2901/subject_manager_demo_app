@@ -45,7 +45,7 @@ RSpec.describe Subject, type: :model do
     it 'returns only uniq records' do
       subj = create(:subject)
       participant = create(:student)
-      participant2 = create(:student, last_name: "Dwa")
+      participant2 = create(:student, last_name: 'Dwa')
       5.times { subj.students << participant }
       subj.students << participant2
       expect(subj.participants.size).to eq 2

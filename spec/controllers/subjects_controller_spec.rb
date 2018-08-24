@@ -19,17 +19,16 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe SubjectsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Subject. As you add validations to Subject, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    {title: "Subject Title", teacher_id: create(:teacher).id }
-  }
+  let(:valid_attributes) do
+    { title: 'Subject Title', teacher_id: create(:teacher).id }
+  end
 
-  let(:invalid_attributes) {
-    {title: nil}
-  }
+  let(:invalid_attributes) do
+    { title: nil }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,132 +37,132 @@ RSpec.describe SubjectsController, type: :controller do
 
   context 'signed_in' do
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env['devise.mapping'] = Devise.mappings[:user]
       sign_in(create(:user), scope: :user)
     end
 
-    describe "GET #index" do
-      it "assigns all subjects as @subjects" do
+    describe 'GET #index' do
+      it 'assigns all subjects as @subjects' do
         subject = Subject.create! valid_attributes
         get :index, {}, session: valid_session
         expect(assigns(:subjects)).to eq([subject])
       end
     end
 
-    describe "GET #show" do
-      it "assigns the requested subject as @subject" do
+    describe 'GET #show' do
+      it 'assigns the requested subject as @subject' do
         subject = Subject.create! valid_attributes
-        get :show, {id: subject.to_param}, session: valid_session
+        get :show, { id: subject.to_param }, session: valid_session
         expect(assigns(:subject)).to eq(subject)
       end
     end
 
-    describe "GET #new" do
-      it "assigns a new subject as @subject" do
+    describe 'GET #new' do
+      it 'assigns a new subject as @subject' do
         get :new, {}, session: valid_session
         expect(assigns(:subject)).to be_a_new(Subject)
       end
 
       it 'assign teacher when provided with hash' do
         teacher = create(:teacher)
-        get :new, {teacher_id: teacher.id }, session: valid_session
+        get :new, { teacher_id: teacher.id }, session: valid_session
         expect(assigns(:subject).teacher).to eq(teacher)
       end
     end
 
-    describe "GET #edit" do
-      it "assigns the requested subject as @subject" do
+    describe 'GET #edit' do
+      it 'assigns the requested subject as @subject' do
         subject = Subject.create! valid_attributes
-        get :edit, {id: subject.to_param}, session: valid_session
+        get :edit, { id: subject.to_param }, session: valid_session
         expect(assigns(:subject)).to eq(subject)
       end
     end
 
-    describe "POST #create" do
-      context "with valid params" do
-        it "creates a new Subject" do
-          expect {
-            post :create, {subject: valid_attributes}, session: valid_session
-          }.to change(Subject, :count).by(1)
+    describe 'POST #create' do
+      context 'with valid params' do
+        it 'creates a new Subject' do
+          expect do
+            post :create, { subject: valid_attributes }, session: valid_session
+          end.to change(Subject, :count).by(1)
         end
 
-        it "assigns a newly created subject as @subject" do
-          post :create, {subject: valid_attributes}, session: valid_session
+        it 'assigns a newly created subject as @subject' do
+          post :create, { subject: valid_attributes }, session: valid_session
           expect(assigns(:subject)).to be_a(Subject)
           expect(assigns(:subject)).to be_persisted
         end
 
-        it "redirects to the created subject" do
-          post :create, {subject: valid_attributes}, session: valid_session
+        it 'redirects to the created subject' do
+          post :create, { subject: valid_attributes }, session: valid_session
           expect(response).to redirect_to(Subject.last)
         end
       end
 
-      context "with invalid params" do
-        it "assigns a newly created but unsaved subject as @subject" do
-          post :create, {subject: invalid_attributes}, session: valid_session
+      context 'with invalid params' do
+        it 'assigns a newly created but unsaved subject as @subject' do
+          post :create, { subject: invalid_attributes }, session: valid_session
           expect(assigns(:subject)).to be_a_new(Subject)
         end
 
         it "re-renders the 'new' template" do
-          post :create, {subject: invalid_attributes}, session: valid_session
-          expect(response).to render_template("new")
+          post :create, { subject: invalid_attributes }, session: valid_session
+          expect(response).to render_template('new')
         end
       end
     end
 
-    describe "PUT #update" do
-      context "with valid params" do
-        let(:new_attributes) {
-          {title: "new title"}
-        }
-
-        it "updates the requested subject" do
-          subject = Subject.create! valid_attributes
-          put :update, {id: subject.to_param, subject: new_attributes}, session: valid_session
-          subject.reload
-          expect(subject.title).to eq "new title"
+    describe 'PUT #update' do
+      context 'with valid params' do
+        let(:new_attributes) do
+          { title: 'new title' }
         end
 
-        it "assigns the requested subject as @subject" do
+        it 'updates the requested subject' do
           subject = Subject.create! valid_attributes
-          put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
+          put :update, { id: subject.to_param, subject: new_attributes }, session: valid_session
+          subject.reload
+          expect(subject.title).to eq 'new title'
+        end
+
+        it 'assigns the requested subject as @subject' do
+          subject = Subject.create! valid_attributes
+          put :update, { id: subject.to_param, subject: valid_attributes }, session: valid_session
           expect(assigns(:subject)).to eq(subject)
         end
 
-        it "redirects to the subject" do
+        it 'redirects to the subject' do
           subject = Subject.create! valid_attributes
-          put :update, {id: subject.to_param, subject: valid_attributes}, session: valid_session
+          put :update, { id: subject.to_param, subject: valid_attributes }, session: valid_session
           expect(response).to redirect_to(subject)
         end
       end
 
-      context "with invalid params" do
-        it "assigns the subject as @subject" do
+      context 'with invalid params' do
+        it 'assigns the subject as @subject' do
           subject = Subject.create! valid_attributes
-          put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
+          put :update, { id: subject.to_param, subject: invalid_attributes }, session: valid_session
           expect(assigns(:subject)).to eq(subject)
         end
 
         it "re-renders the 'edit' template" do
           subject = Subject.create! valid_attributes
-          put :update, {id: subject.to_param, subject: invalid_attributes}, session: valid_session
-          expect(response).to render_template("edit")
+          put :update, { id: subject.to_param, subject: invalid_attributes }, session: valid_session
+          expect(response).to render_template('edit')
         end
       end
     end
 
-    describe "DELETE #destroy" do
-      it "destroys the requested subject" do
+    describe 'DELETE #destroy' do
+      it 'destroys the requested subject' do
         subject = Subject.create! valid_attributes
-        expect {
-          delete :destroy, {id: subject.to_param}, session: valid_session
-        }.to change(Subject, :count).by(-1)
+        expect do
+          delete :destroy, { id: subject.to_param }, session: valid_session
+        end.to change(Subject, :count).by(-1)
       end
 
-      it "redirects to the subjects list" do
+      it 'redirects to the subjects list' do
         subject = Subject.create! valid_attributes
-        delete :destroy, {id: subject.to_param}, session: valid_session
+        delete :destroy, { id: subject.to_param }, session: valid_session
         expect(response).to redirect_to(subjects_url)
       end
     end
@@ -171,7 +170,7 @@ RSpec.describe SubjectsController, type: :controller do
     describe 'GET #participants' do
       it 'show teacher subject list list' do
         subject = create(:subject_with_students)
-        get :participants, {id: subject.id}
+        get :participants, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
     end
@@ -179,55 +178,53 @@ RSpec.describe SubjectsController, type: :controller do
     describe 'GET #new_participant' do
       it 'render new participant theme with assigned subject' do
         subject = create(:subject)
-        get :new_participant, {id: subject.id}
+        get :new_participant, id: subject.id
         expect(assigns(:subject)).to eq(subject)
       end
     end
 
     describe 'POST #assign_participant' do
-      context "with valid params" do
-        it "assign participant" do
+      context 'with valid params' do
+        it 'assign participant' do
           subject = create(:subject)
           participant = create(:student)
-          expect {
-            post :assign_participant, {id: subject.id, participant: {participant_id: participant.id} }, session: valid_session
-          }.to change(subject.students, :count).by(1)
+          expect do
+            post :assign_participant, { id: subject.id, participant: { participant_id: participant.id } }, session: valid_session
+          end.to change(subject.students, :count).by(1)
         end
 
-        it "redirects to subject participants" do
+        it 'redirects to subject participants' do
           subject = create(:subject)
           participant = create(:student)
-          post :assign_participant, {id: subject.id, participant: {participant_id: participant.id} }, session: valid_session
+          post :assign_participant, { id: subject.id, participant: { participant_id: participant.id } }, session: valid_session
           expect(response).to redirect_to(subjects_participants_path(id: subject.id))
         end
       end
 
-      context "with invalid params" do
-        it "assigns a newly created but unsaved subject as @subject" do
+      context 'with invalid params' do
+        it 'assigns a newly created but unsaved subject as @subject' do
           subject = create(:subject)
-          post :assign_participant, {id: subject.id, participant: {participant_id: nil}}, session: valid_session
+          post :assign_participant, { id: subject.id, participant: { participant_id: nil } }, session: valid_session
           expect(assigns(:participant)).to be_a(Participant)
         end
       end
     end
 
-    describe "DELETE #unassing_user" do
-      it "removes participant assignment" do
+    describe 'DELETE #unassing_user' do
+      it 'removes participant assignment' do
         subject = create(:subject_with_students)
-        expect {
-          delete :unassing_participant, {id: subject.to_param,
-            participant_id: subject.students.first.id}, session: valid_session
-        }.to change(subject.students, :count).by(-1)
+        expect do
+          delete :unassing_participant, { id: subject.to_param,
+                                          participant_id: subject.students.first.id }, session: valid_session
+        end.to change(subject.students, :count).by(-1)
       end
 
-      it "redirects to the subject participants list" do
+      it 'redirects to the subject participants list' do
         subject = create(:subject_with_students)
-        delete :unassing_participant, {id: subject.to_param,
-          participant_id: subject.students.first.id}, session: valid_session
+        delete :unassing_participant, { id: subject.to_param,
+                                        participant_id: subject.students.first.id }, session: valid_session
         expect(response).to redirect_to(subjects_participants_path(id: subject.id))
       end
     end
-
   end
-
 end

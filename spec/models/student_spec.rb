@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-
   it 'is not saved when first_name is not provided' do
     expect { create(:student, first_name: nil) }.to raise_error ActiveRecord::RecordInvalid
   end
@@ -24,7 +23,7 @@ RSpec.describe Student, type: :model do
 
   describe '#full_name' do
     it 'shows students name and surname' do
-      expect(create(:student).full_name).to eq "Example Student"
+      expect(create(:student).full_name).to eq 'Example Student'
     end
   end
 end

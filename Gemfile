@@ -35,9 +35,9 @@ group :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rubocop'
   gem 'spring'
   gem 'web-console', '~> 2.0'
-  gem 'rubocop'
 end
 
 group :development, :test do
