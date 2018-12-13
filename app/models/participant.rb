@@ -8,7 +8,7 @@ class Participant
       begin
         Subject.find(subject_id).students << Student.find(participant_id)
       rescue StandardError
-        return false
+        false
       end
       true
     else
